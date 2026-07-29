@@ -89,8 +89,9 @@ export default function Hero() {
             custom={0.5}
             className="text-lg sm:text-xl text-foreground/70 max-w-2xl mb-10 leading-relaxed"
           >
-            Senior Full-Stack Developer specializing in React, TypeScript, and modern web architectures.
-            I craft scalable applications with exceptional performance, clean design, and production-grade engineering.
+            Fullstack Engineer casting magic spells through lines of code — 5+ years across frontend,
+            machine learning, and Python. I build with React, Next.js, TypeScript, and AI-driven tooling,
+            and I'm looking for big gigs that push me to keep learning.
           </motion.p>
 
           {/* CTAs */}
@@ -130,7 +131,7 @@ export default function Hero() {
             className="flex items-center gap-4"
           >
             <a
-              href="https://github.com"
+              href="https://github.com/Dweirdgemini"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-foreground/60 hover:text-steel transition-colors duration-200"
@@ -140,13 +141,13 @@ export default function Hero() {
             </a>
             <span className="text-foreground/20">|</span>
             <a
-              href="https://linkedin.com"
+              href="https://x.com/Dev_ngG"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-foreground/60 hover:text-steel transition-colors duration-200"
             >
               <Linkedin className="h-4 w-4" />
-              <span className="font-mono">LinkedIn</span>
+              <span className="font-mono">X</span>
             </a>
             <span className="text-foreground/20">|</span>
             <a

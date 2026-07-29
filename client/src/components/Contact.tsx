@@ -134,7 +134,7 @@ export default function Contact() {
               </a>
 
               <a
-                href="https://github.com"
+                href="https://github.com/Dweirdgemini"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-foreground/70 hover:text-steel transition-colors group"
@@ -144,12 +144,12 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-xs text-foreground/40">GitHub</p>
-                  <p className="text-sm font-medium">github.com/dev</p>
+                  <p className="text-sm font-medium">github.com/Dweirdgemini</p>
                 </div>
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://x.com/Dev_ngG"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-foreground/70 hover:text-steel transition-colors group"
@@ -158,8 +158,8 @@ export default function Contact() {
                   <Linkedin className="h-4 w-4 text-steel" />
                 </div>
                 <div>
-                  <p className="text-xs text-foreground/40">LinkedIn</p>
-                  <p className="text-sm font-medium">linkedin.com/in/dev</p>
+                  <p className="text-xs text-foreground/40">X</p>
+                  <p className="text-sm font-medium">x.com/Dev_ngG</p>
                 </div>
               </a>
             </div>
