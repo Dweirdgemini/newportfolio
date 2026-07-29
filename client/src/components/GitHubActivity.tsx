@@ -25,7 +25,7 @@ interface LanguageData {
   percent: number;
 }
 
-const githubUsername = "dev";
+const githubUsername = "Dweirdgemini";
 
 const languageColors: Record<string, string> = {
   TypeScript: "#3178c6",
