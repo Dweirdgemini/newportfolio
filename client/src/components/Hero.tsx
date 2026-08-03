@@ -3,7 +3,7 @@
  * Professional introduction with staggered text animation, floating background
  */
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
 
@@ -37,7 +37,7 @@ export default function Hero() {
           alt=""
           className={`w-full h-full object-cover ${theme === "dark" ? "opacity-10" : "opacity-30"}`}
         />
-        <div className={`absolute inset-0 ${theme === "dark" ? "bg-background/90" : "bg-gradient-to-b from-background/60 via-background/80 to-background"}`} />
+        <div className={`absolute inset-0 ${theme === "dark" ? "bg-background/90" : "bg-linear-to-b from-background/60 via-background/80 to-background"}`} />
       </div>
 
       {/* Dot grid overlay */}
@@ -146,7 +146,7 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-foreground/60 hover:text-steel transition-colors duration-200"
             >
-              <Linkedin className="h-4 w-4" />
+              <Twitter className="h-4 w-4" />
               <span className="font-mono">X</span>
             </a>
             <span className="text-foreground/20">|</span>
