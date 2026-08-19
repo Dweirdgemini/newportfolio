@@ -89,7 +89,7 @@ export default function Hero() {
             custom={0.5}
             className="text-lg sm:text-xl text-foreground/70 max-w-2xl mb-10 leading-relaxed"
           >
-            Fullstack Engineer casting magic spells through lines of code — 5+ years across frontend,
+            Fullstack Engineer casting magic spells through lines of code, 5+ years across frontend,
             machine learning, and Python. I build with React, Next.js, TypeScript, and AI-driven tooling,
             and I'm looking for big gigs that push me to keep learning.
           </motion.p>
