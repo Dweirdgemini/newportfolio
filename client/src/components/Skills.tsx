@@ -62,18 +62,17 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative py-24 md:py-32 bg-secondary/50">
-      <span className="section-number absolute -top-4 -left-2 opacity-50">02</span>
 
-      <div className="container relative z-10">
-        <motion.div
+    <div className="container relative z-10">
+      <motion.div
           ref={sectionRef}
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
           className="mb-16"
-        >
-          <p className="font-mono text-sm text-steel mb-4">
-            <span className="text-foreground/40 mr-2">02.</span>Technical Skills
+      >
+         <p className="font-mono text-sm text-steel mb-4">
+            <span className="text-foreground/40 mr-2"></span>Technical Skills
           </p>
           <h2 className="font-heading text-3xl sm:text-4xl font-bold leading-tight mb-4">
             Technologies I <span className="text-steel">work with</span>

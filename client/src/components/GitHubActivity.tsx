@@ -188,13 +188,13 @@ export default function GitHubActivity() {
                 <div className="h-32 bg-muted animate-pulse rounded" />
               ) : (
                 <div className="overflow-x-auto">
-                  <div className="flex gap-[3px] min-w-fit">
+                  <div className="flex gap-0.75 min-w-fit">
                     {contributionWeeks.map((week, wi) => (
-                      <div key={wi} className="flex flex-col gap-[3px]">
+                      <div key={wi} className="flex flex-col gap-0.75">
                         {week.days.map((day, di) => (
                           <div
                             key={`${wi}-${di}`}
-                            className="w-[11px] h-[11px] rounded-sm transition-colors duration-200 hover:ring-1 hover:ring-steel/40 cursor-pointer"
+                            className="w-2.75 h-2.75 rounded-sm transition-colors duration-200 hover:ring-1 hover:ring-steel/40 cursor-pointer"
                             style={{ backgroundColor: levelColors[day.level] }}
                             title={`${day.level > 0 ? day.level : "No"} contribution${day.level !== 1 ? "s" : ""}`}
                           />

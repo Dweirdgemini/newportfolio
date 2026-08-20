@@ -18,9 +18,6 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-24 md:py-32 overflow-hidden">
-      {/* Section number */}
-      <span className="section-number absolute -top-4 -left-2 opacity-50">01</span>
-
       <div className="container relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left column - heading */}
@@ -32,7 +29,7 @@ export default function About() {
             className="lg:col-span-5"
           >
             <p className="font-mono text-sm text-steel mb-4">
-              <span className="text-foreground/40 mr-2">01.</span>About Me
+              <span className="text-foreground/40 mr-2"></span>About Me
             </p>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold leading-tight mb-6">
               Engineering interfaces with{" "}
@@ -55,7 +52,7 @@ export default function About() {
                 accessibility, and scalability.
               </p>
               <p className="mb-8">
-                I specialize in React ecosystems — from complex dashboards and real-time collaboration tools
+                I specialize in React, NextJs ecosystems, from complex dashboards and real-time collaboration tools
                 to headless e-commerce platforms. I believe in writing code that's maintainable, testing
                 thoroughly, and shipping iteratively. My approach combines strong technical fundamentals
                 with a deep understanding of user experience principles.
