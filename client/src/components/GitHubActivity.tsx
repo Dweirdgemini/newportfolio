@@ -47,6 +47,7 @@ export default function GitHubActivity() {
   const [totalStars, setTotalStars] = useState(0);
   const [totalForks, setTotalForks] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [contributionWeeks, setContributionWeeks] = useState<{ days: { level: number }[] }[]>([]);
 
   useEffect(() => {
     async function fetchGitHubData() {
@@ -85,6 +86,24 @@ export default function GitHubActivity() {
             }));
           setLanguages(sorted.slice(0, 6));
         }
+
+        // Fetch real contribution activity
+        const contribRes = await fetch("/api/github-contributions");
+        if (contribRes.ok) {
+          const contribData = await contribRes.json();
+          const weeks = contribData.weeks.map((week: any) => ({
+            days: week.contributionDays.map((day: any) => {
+              const count = day.contributionCount;
+              let level = 0;
+              if (count > 0 && count <= 2) level = 1;
+              else if (count > 2 && count <= 4) level = 2;
+              else if (count > 4 && count <= 6) level = 3;
+              else if (count > 6) level = 4;
+              return { level };
+            }),
+          }));
+          setContributionWeeks(weeks);
+        }
       } catch (err) {
         console.error("GitHub API error:", err);
       } finally {
@@ -93,31 +112,6 @@ export default function GitHubActivity() {
     }
     fetchGitHubData();
   }, []);
-
-  // Generate contribution data (simulated for the last year)
-  const generateContributionData = () => {
-    const weeks: { days: { level: number }[] }[] = [];
-    const today = new Date();
-    for (let w = 51; w >= 0; w--) {
-      const days: { level: number }[] = [];
-      for (let d = 0; d < 7; d++) {
-        const date = new Date(today);
-        date.setDate(date.getDate() - w * 7 - d);
-        const dayOfWeek = date.getDay();
-        // More activity on weekdays, random contribution level
-        const baseLevel = dayOfWeek >= 1 && dayOfWeek <= 5 ? 2 : 0.5;
-        const level = Math.min(
-          4,
-          Math.max(0, Math.floor(Math.random() * 3) + baseLevel)
-        );
-        days.push({ level });
-      }
-      weeks.push({ days });
-    }
-    return weeks;
-  };
-
-  const [contributionWeeks] = useState(() => generateContributionData());
 
   const levelColors = [
     "oklch(0.95 0.005 260)",
@@ -310,5 +304,4 @@ export default function GitHubActivity() {
         )}
       </div>
     </section>
-  );
-}
+  )}

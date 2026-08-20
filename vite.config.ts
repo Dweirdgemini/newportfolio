@@ -18,9 +18,15 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
-  server: {
+    server: {
     port: 3000,
     strictPort: false,
     host: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3050",
+        changeOrigin: true,
+      },
+    },
   },
 });
