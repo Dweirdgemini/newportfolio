@@ -44,17 +44,18 @@ export default function Hero() {
       <div className="absolute inset-0 dot-grid opacity-40" />
 
       {/* Floating decorative shapes */}
-      <motion.div
-        animate={{ y: [0, -10, 0], rotate: [0, 2, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full border border-steel/20 hidden lg:block"
-      />
-      <motion.div
-        animate={{ y: [0, 8, 0], rotate: [0, -1, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-1/3 left-[10%] w-20 h-20 rounded-lg border border-amber/20 rotate-12 hidden lg:block"
-      />
-
+     {/* Profile photo */}
+<motion.div
+  animate={{ y: [0, -10, 0], rotate: [0, 2, 0] }}
+  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+  className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full border-2 border-steel/30 overflow-hidden hidden lg:block shadow-lg shadow-steel/10"
+>
+  <img
+    src="/images/profile.jpg"
+    alt="Portrait"
+    className="w-full h-full object-cover"
+  />
+</motion.div>
       <div className="container relative z-10 pt-24 pb-16">
         <div className="max-w-4xl">
           {/* Monospaced label */}
@@ -66,7 +67,7 @@ export default function Hero() {
             className="font-mono text-sm text-steel mb-6 tracking-wide"
           >
             <span className="text-foreground/40 mr-2">//</span>
-            Available for freelance — June 2026
+            Available for freelance
           </motion.p>
 
           {/* Main heading */}
