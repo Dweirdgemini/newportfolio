@@ -17,6 +17,8 @@ interface Repo {
   forks_count: number;
   html_url: string;
   updated_at: string;
+  private?: boolean;
+  org?: string | null;
 }
 
 interface LanguageData {
@@ -52,16 +54,14 @@ export default function GitHubActivity() {
   useEffect(() => {
     async function fetchGitHubData() {
       try {
-        // Fetch recent repos
-        const reposRes = await fetch(
-          `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6&type=public`
-        );
-        if (reposRes.ok) {
-          const reposData = await reposRes.json();
-          setRepos(reposData);
-          setTotalStars(reposData.reduce((acc: number, r: Repo) => acc + r.stargazers_count, 0));
-          setTotalForks(reposData.reduce((acc: number, r: Repo) => acc + r.forks_count, 0));
-        }
+        // Fetch recent repos (personal + org, via authenticated server route)
+        const reposRes = await fetch("/api/github-projects");
+            if (reposRes.ok) {
+              const reposData = await reposRes.json();
+              setRepos(reposData);
+              setTotalStars(reposData.reduce((acc: number, r: Repo) => acc + r.stargazers_count, 0));
+              setTotalForks(reposData.reduce((acc: number, r: Repo) => acc + r.forks_count, 0));
+}
 
         // Fetch language stats
         const langRes = await fetch(
@@ -265,38 +265,51 @@ export default function GitHubActivity() {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {repos.slice(0, 6).map((repo) => (
                   <a
-                    key={repo.name}
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block p-3 rounded-md border border-border hover:border-steel/30 hover:shadow-sm transition-all duration-200 group"
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-mono text-sm text-steel font-medium group-hover:underline">
-                        {repo.name}
-                      </span>
-                    </div>
-                    <p className="text-xs text-foreground/50 mb-2 line-clamp-2">
-                      {repo.description || "No description"}
-                    </p>
-                    <div className="flex items-center gap-3 text-xs text-foreground/40">
-                      {repo.language && (
-                        <span className="flex items-center gap-1">
-                          <span
-                            className="w-2.5 h-2.5 rounded-full"
-                            style={{ backgroundColor: languageColors[repo.language] || "#888" }}
-                          />
-                          {repo.language}
-                        </span>
-                      )}
-                      <span className="flex items-center gap-1">
-                        <Star className="h-3 w-3" /> {repo.stargazers_count}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <GitFork className="h-3 w-3" /> {repo.forks_count}
-                      </span>
-                    </div>
-                  </a>
+                    
+  key={repo.name}
+  href={repo.html_url}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block p-3 rounded-md border border-border hover:border-steel/30 hover:shadow-sm transition-all duration-200 group"
+>
+  <div className="flex items-center justify-between mb-1 gap-2">
+    <span className="font-mono text-sm text-steel font-medium group-hover:underline truncate">
+      {repo.name}
+    </span>
+    <div className="flex items-center gap-1.5 shrink-0">
+      {repo.org && (
+        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-steel/10 text-steel border border-steel/20">
+          {repo.org}
+        </span>
+      )}
+      {repo.private && (
+        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-amber/10 text-amber border border-amber/20">
+          Private
+        </span>
+      )}
+    </div>
+  </div>
+  <p className="text-xs text-foreground/50 mb-2 line-clamp-2">
+    {repo.description || "No description"}
+  </p>
+  <div className="flex items-center gap-3 text-xs text-foreground/40">
+    {repo.language && (
+      <span className="flex items-center gap-1">
+        <span
+          className="w-2.5 h-2.5 rounded-full"
+          style={{ backgroundColor: languageColors[repo.language] || "#888" }}
+        />
+        {repo.language}
+      </span>
+    )}
+    <span className="flex items-center gap-1">
+      <Star className="h-3 w-3" /> {repo.stargazers_count}
+    </span>
+    <span className="flex items-center gap-1">
+      <GitFork className="h-3 w-3" /> {repo.forks_count}
+    </span>
+  </div>
+</a>
                 ))}
               </div>
             </Card>
