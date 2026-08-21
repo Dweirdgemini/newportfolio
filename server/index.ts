@@ -70,6 +70,50 @@ async function startServer() {
     }
   });
 
+  app.get("/api/github-projects", async (_req, res) => {
+    const token = process.env.GITHUB_TOKEN;
+
+    if (!token) {
+      return res.status(500).json({ error: "GITHUB_TOKEN not set on server" });
+    }
+
+    try {
+      const ghRes = await fetch(
+        "https://api.github.com/user/repos?visibility=all&affiliation=owner,organization_member&sort=updated&per_page=10",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/vnd.github+json",
+          },
+        }
+      );
+
+      if (!ghRes.ok) {
+        const text = await ghRes.text();
+        console.error("GitHub repos error:", ghRes.status, text);
+        return res.status(502).json({ error: "GitHub API request failed" });
+      }
+
+      const repos = await ghRes.json();
+
+      const cleaned = repos.map((r: any) => ({
+        name: r.name,
+        description: r.description,
+        language: r.language,
+        stargazers_count: r.stargazers_count,
+        forks_count: r.forks_count,
+        html_url: r.html_url,
+        updated_at: r.updated_at,
+        private: r.private,
+      }));
+
+      res.json(cleaned);
+    } catch (err) {
+      console.error("GitHub projects fetch error:", err);
+      res.status(500).json({ error: "Failed to fetch projects" });
+    }
+  });
+
   // Serve static files from dist/public in production
   const staticPath =
     process.env.NODE_ENV === "production"
